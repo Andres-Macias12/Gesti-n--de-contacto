@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h2>Lista de Contactos</h2>
+    {% if contactos %}
+        <ul>
+        {% for contacto in contactos %}
+            <li>{{ contacto.nombre }} - {{ contacto.telefono }}</li>
+        {% endfor %}
+        </ul>
+    {% else %}
+        <p>No hay contactos disponibles.</p>
+    {% endif %}
+
+    <h3>Buscar Contacto</h3>
+    <form action="{{ url_for('buscar_contacto') }}" method="POST">
+        <label for="buscar_nombre">Nombre:</label>
+        <input type="text" id="buscar_nombre" name="nombre" required>
+        <button type="submit">Buscar</button>
+    </form>
+
+    <h3>Eliminar Contacto</h3>
+    <form action="{{ url_for('eliminar_contacto') }}" method="POST">
+        <label for="eliminar_nombre">Nombre:</label>
+        <input type="text" id="eliminar_nombre" name="nombre" required>
+        <button type="submit">Eliminar</button>
+    </form>
+{% endblock %}
